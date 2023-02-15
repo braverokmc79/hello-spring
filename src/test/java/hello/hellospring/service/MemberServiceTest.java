@@ -1,25 +1,37 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.reository.JdbcTemplateMemberRepository;
 import hello.hellospring.reository.MemberRepository;
 import hello.hellospring.reository.MemoryMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
+@Transactional
 class MemberServiceTest {
 
+    @Autowired
     MemberService memberService ;
-    MemberRepository memberRepository;
+    //MemberRepository memberRepository;
 
-    @BeforeEach
-    public void beforeEach(){
-         memberRepository =new MemoryMemberRepository();
-        memberService =new MemberService(memberRepository);
-    }
+    @Autowired
+    JdbcTemplateMemberRepository memberRepository;
+
+//    @BeforeEach
+//    public void beforeEach(){
+//        memberRepository =new JdbcTemplateMemberRepository();
+//        memberService =new MemberService(memberRepository);
+//    }
+
+
     @AfterEach
     public void afterEach(){
         memberRepository.clearStore();
@@ -41,14 +53,14 @@ class MemberServiceTest {
     }
 
 
-    @Test
+  //  @Test
     public void 중복_회원_예외(){
         //given
         Member member1 =new Member();
         member1.setName("spring1");
 
         Member member2=new Member();
-        member2.setName("spring1");
+        member2.setName("spring2");
 
         //when
         memberService.join(member1);

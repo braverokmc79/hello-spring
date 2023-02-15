@@ -1,6 +1,7 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
+import hello.hellospring.reository.JdbcTemplateMemberRepository;
 import hello.hellospring.reository.MemberRepository;
 import hello.hellospring.reository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,10 @@ import java.util.Optional;
 public class MemberService {
 
 
-    private   MemberRepository memberRepository;
+    private JdbcTemplateMemberRepository  memberRepository;
 
     @Autowired
-    public  MemberService (MemberRepository memberRepository) {
-
+    public  MemberService (JdbcTemplateMemberRepository memberRepository) {
         this.memberRepository=memberRepository;
     }
 

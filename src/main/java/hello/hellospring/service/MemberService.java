@@ -1,11 +1,10 @@
 package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
-import hello.hellospring.reository.JdbcTemplateMemberRepository;
-import hello.hellospring.reository.JpaMemberRepository;
-import hello.hellospring.reository.MemberRepository;
-import hello.hellospring.reository.MemoryMemberRepository;
+import hello.hellospring.reository.*;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -24,10 +23,19 @@ public class MemberService {
 //        this.memberRepository=memberRepository;
 //    }
 
-    private JpaMemberRepository memberRepository;
+//    private JpaMemberRepository memberRepository;
+//
+//    @Autowired
+//    public  MemberService (JpaMemberRepository memberRepository) {
+//        this.memberRepository=memberRepository;
+//    }
+
+
+    private SpringDataJpaMemberRepository memberRepository;
+
 
     @Autowired
-    public  MemberService (JpaMemberRepository memberRepository) {
+    public  MemberService (SpringDataJpaMemberRepository memberRepository) {
         this.memberRepository=memberRepository;
     }
 
@@ -60,8 +68,8 @@ public class MemberService {
     }
 
 
-    public Optional<Member> findOne(Long memberId){
-        return  memberRepository.findById(memberId);
+    public Optional<Member> findOne(Long id){
+        return   memberRepository.findById(id);
     }
 
 

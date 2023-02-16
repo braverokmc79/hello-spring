@@ -53,8 +53,8 @@ public class MemberServiceIntegrtionTest {
     }
 
 
-    public Optional<Member> findOne(Long memberId){
-        return  memberRepository.findById(memberId);
+    public Optional<Member> findOne(Long id){
+        return  memberRepository.findById(id);
     }
 
 

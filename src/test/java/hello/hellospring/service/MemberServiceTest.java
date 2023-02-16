@@ -4,6 +4,7 @@ import hello.hellospring.domain.Member;
 import hello.hellospring.reository.JdbcTemplateMemberRepository;
 import hello.hellospring.reository.MemberRepository;
 import hello.hellospring.reository.MemoryMemberRepository;
+import hello.hellospring.reository.SpringDataJpaMemberRepository;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,8 +23,8 @@ class MemberServiceTest {
     MemberService memberService ;
     //MemberRepository memberRepository;
 
-    @Autowired
-    JdbcTemplateMemberRepository memberRepository;
+
+    SpringDataJpaMemberRepository memberRepository;
 
 //    @BeforeEach
 //    public void beforeEach(){
@@ -32,10 +33,10 @@ class MemberServiceTest {
 //    }
 
 
-    @AfterEach
-    public void afterEach(){
-        memberRepository.clearStore();
-    }
+//    @AfterEach
+//    public void afterEach(){
+//        memberRepository.clearStore();
+//    }
 
     @Test
     void 회원가입() {
@@ -49,7 +50,6 @@ class MemberServiceTest {
         //then
         Member findMember= memberService.findOne(saveId).get();
         Assertions.assertThat(member.getName()).isEqualTo(findMember.getName());
-
     }
 
 

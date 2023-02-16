@@ -70,9 +70,9 @@ public class JdbcTemplateMemberRepository implements MemberRepository{
     }
 
 
-    @Override
-    public void clearStore() {
-        jdbcTemplate.update("delete from member");
-    }
+//    @Override
+//    public void clearStore() {
+//        jdbcTemplate.update("delete from member");
+//    }
 
 }

@@ -2,25 +2,34 @@ package hello.hellospring.service;
 
 import hello.hellospring.domain.Member;
 import hello.hellospring.reository.JdbcTemplateMemberRepository;
+import hello.hellospring.reository.JpaMemberRepository;
 import hello.hellospring.reository.MemberRepository;
 import hello.hellospring.reository.MemoryMemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
 
+@Transactional
 @Service
 public class MemberService {
 
 
-    private JdbcTemplateMemberRepository  memberRepository;
+//    private JdbcTemplateMemberRepository  memberRepository;
+//
+//    @Autowired
+//    public  MemberService (JdbcTemplateMemberRepository memberRepository) {
+//        this.memberRepository=memberRepository;
+//    }
+
+    private JpaMemberRepository memberRepository;
 
     @Autowired
-    public  MemberService (JdbcTemplateMemberRepository memberRepository) {
+    public  MemberService (JpaMemberRepository memberRepository) {
         this.memberRepository=memberRepository;
     }
-
 
     /**
      * 회원가입
